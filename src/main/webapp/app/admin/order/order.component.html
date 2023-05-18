@@ -1,0 +1,52 @@
+<div>
+  <h2>
+    <span id="health-page-heading" data-cy="healthPageHeading">Orders Details</span>
+
+    <button class="btn btn-primary float-end" (click)="refresh()"><fa-icon icon="sync"></fa-icon> <span>Refresh</span></button>
+  </h2>
+
+  <div class="table-responsive">
+    <table id="healthCheck" class="table table-striped" aria-describedby="health-page-heading">
+      <thead>
+        <tr>
+          <th scope="col">Order number</th>
+          <th scope="col" class="text-center" *jhiHasAnyAuthority="'ROLE_ADMIN'">User</th>
+          <th scope="col" class="text-center">Status</th>
+          <th scope="col" class="text-center">Total</th>
+          <th scope="col" class="text-center">Cars</th>
+          <th scope="col" class="text-center">Date</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="orders">
+        <tr *ngFor="let order of orders">
+          <td>
+            <span class="text-capitalize">{{ order.id }}</span>
+          </td>
+          <td class="text-center" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <span class="text-center">{{ order.user }}</span>
+          </td>
+          <td class="text-center">
+            <span class="badge" [ngClass]="getBadgeClass(order.orderStatus)">
+              {{
+                { ON_THE_WAY: 'ON_THE_WAY', ORDERED: 'ORDERED', DELIVERED: 'DELIVERED', SHIPPED: 'SHIPPED' }[order.orderStatus || 'UNKNOWN']
+              }}
+            </span>
+          </td>
+          <td class="text-center">
+            <span class="text-center">${{ order.orderTotalPrice }}</span>
+          </td>
+          <td class="text-center">
+            <span class="text-center" *ngFor="let car of order.cars">
+              <a [routerLink]="['/all', car, 'view']">{{ car }}</a></span
+            >
+          </td>
+          <td class="text-center">
+            <a *ngIf="order.orderDate">
+              {{ getDate(order?.orderDate) }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

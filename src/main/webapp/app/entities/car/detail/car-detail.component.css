@@ -1,0 +1,228 @@
+body {
+  margin-top: 20px;
+  background: #eee;
+}
+
+/*panel*/
+.panel {
+  margin-top: 100px;
+  border: none;
+  box-shadow: none;
+  min-width: 220px;
+}
+.card-notify-year {
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  background: -webkit-linear-gradient(#f44336, #d9b500);
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  width: 80px;
+  height: 80px;
+  padding: 23px 0 0 0;
+}
+.card {
+  margin-bottom: 8%;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+}
+@media (min-width: 1660px) {
+  #carImage {
+    max-width: 30vw;
+  }
+}
+@media (min-width: 1600px) {
+  .widget-2 {
+    max-width: 18vmax;
+  }
+}
+@media only screen and (max-width: 1660px) and (min-width: 913px) {
+  .left-col {
+    max-width: 55%;
+  }
+  #carImage {
+    max-width: 35vw;
+  }
+}
+@media (max-width: 912px) {
+  .info {
+    flex-direction: column;
+  }
+  .bg-grea-2 {
+    background: #fff;
+    box-shadow: 0 0 0 rgb(255, 255, 255) !important;
+  }
+  .widget-2 {
+    border: none;
+    width: 70vw !important;
+    margin: -10px;
+  }
+  .desc-tab {
+    flex-direction: column !important;
+  }
+  img {
+    width: 70vw !important;
+  }
+  .pro-d-title {
+    font-size: 6.5vw !important;
+  }
+}
+@media (max-width: 560px) {
+  .widget-2 {
+    border: none;
+    width: 83vw !important;
+    margin: -10px;
+  }
+}
+@media (max-width: 281px) {
+  .li {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.my-pro-img-details {
+  overflow: hidden;
+}
+img {
+  width: 40vw;
+  min-width: 200px;
+  height: auto;
+}
+.description {
+  margin: 30px auto;
+  text-align: center;
+  font-size: 1.4vmax;
+}
+.fa-square-check,
+.fa-car,
+.fa-calendar,
+.fa-cube,
+.fa-cog,
+.fa-car-side,
+.fa-modx {
+  background: -webkit-linear-gradient(#f44336, #d9b500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.nav {
+  font-weight: normal;
+  --bs-nav-link-padding-x: 3rem;
+  --bs-nav-link-padding-y: 0.5rem;
+  --bs-nav-link-color: #6a6e72;
+  --bs-nav-link-hover-color: #ff4800;
+  --bs-nav-link-disabled-color: #6c757d;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: var(--bs-nav-tabs-link-active-color);
+  background-color: #e4e5e600;
+  border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+.nav-tabs {
+  --bs-nav-tabs-border-width: 3px;
+  --bs-nav-tabs-border-color: #49505714;
+  --bs-nav-tabs-border-radius: 0.15rem;
+  --bs-nav-tabs-link-hover-border-color: rgba(233, 236, 239, 0) rgba(233, 236, 239, 0) rgba(222, 226, 230, 0);
+  --bs-nav-tabs-link-active-color: #495057;
+  --bs-nav-tabs-link-active-bg: #e4e5e6;
+  --bs-nav-tabs-link-active-border-color: #dee2e600 #dee2e600 #ff6a00;
+  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
+}
+.mat-tab-group.chips .mat-ink-bar,
+.mat-tab-nav-bar.chips .mat-ink-bar {
+  background-color: #d9b500 !important;
+}
+.desc-tab {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 2;
+  white-space: pre-line;
+  text-align: justify;
+}
+.pro-img-details {
+  margin-left: -15px;
+}
+
+.pro-img-details img {
+  margin-top: 20px;
+}
+
+.intro {
+  text-align: center;
+}
+
+.pro-d-title {
+  font-size: 2.5vw;
+  text-overflow: ellipsis;
+  margin-top: 5%;
+  line-height: normal;
+  font-family: 'Raleway', sans-serif;
+}
+
+.widget-2 {
+  width: 25vmax;
+  margin-bottom: 40px;
+  padding: 0 25px;
+}
+.bg-grea-2 {
+  background: #fff;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+}
+
+.sidebar-title {
+  font-size: 20px;
+  position: relative;
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Raleway', sans-serif;
+  color: #161616;
+}
+.advanced-search ul span {
+  font-weight: 400;
+  float: left;
+  color: #161616;
+}
+
+.advanced-search ul li {
+  list-style: none;
+  padding-top: 10px;
+  padding-left: -30px;
+  margin-left: -40px;
+  color: #535353;
+  font-size: 16px;
+  line-height: 30px;
+  border-bottom: 1px dotted #ddd;
+  text-align: right;
+}
+.options {
+  margin: 0.6% !important;
+}
+.left-col {
+  display: flex;
+  flex-direction: column;
+}

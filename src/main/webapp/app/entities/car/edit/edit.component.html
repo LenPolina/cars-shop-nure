@@ -1,0 +1,272 @@
+<!-- Edit Modal -->
+<div
+  class="modal fade"
+  id="updateCarModal"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="carEditModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateCarModalLabel">
+          Edit car {{ this.retEditC()?.carBrand }} {{ this.retEditC()?.carModel }} {{ this.retEditC()?.carYear }}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" #closeUpdateModal aria-label="Close">
+          <span aria-hidden="true" (click)="resetForm(editForm)">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm" (ngSubmit)="onUpdateCar(editForm.value)">
+          <div class="form-group">
+            <label for="edit-car-image">Image</label>
+            <img class="form-control" [hidden]="isFileLoad && !imageLoadFail" src="{{ getImageUrl(retEditC()?.carImageUrl) }}" />
+            <image-cropper
+              [hidden]="!isFileLoad && imageLoadFail"
+              [imageChangedEvent]="imgChangeEvt"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="6 / 4"
+              [resizeToWidth]="600"
+              [resizeToHeight]="400"
+              format="png"
+              (imageCropped)="cropImg($event)"
+              (imageLoaded)="imgLoad()"
+              (cropperReady)="initCropper()"
+              (loadImageFailed)="imgFailed()"
+            >
+            </image-cropper>
+            <input
+              type="file"
+              ngModel
+              #file="ngModel"
+              name="file"
+              pattern="^.*\.(jpg|JPG|jpeg|png)$"
+              class="form-control imageFil"
+              id="edit-car-image"
+              (change)="onFileChange($event)"
+            />
+            <div *ngIf="file.errors && file.invalid">
+              <small class="text-danger" *ngIf="file.errors?.['pattern']">Choose image in format .png, .jpeg, .jpg</small>
+            </div>
+          </div>
+          <div class="first-block">
+            <div class="form-group required">
+              <label for="edit-car-brand" class="control-label">Brand</label>
+              <select
+                id="edit-car-brand"
+                class="selectInp form-control"
+                [ngModel]="this.retEditC()?.carBrand"
+                [class.is-invalid]="brand.invalid && brand.touched"
+                #brand="ngModel"
+                name="carBrand"
+                required
+              >
+                <option *ngFor="let brand of brandValues" [value]="brand">{{ getBrandValue(brand) }}</option>
+              </select>
+              <div *ngIf="brand.errors && brand.invalid && brand.touched">
+                <small class="text-danger" *ngIf="brand.errors?.['required']">Brand is required.</small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edit-car-body-type" class="control-label">Body Type</label>
+              <p>
+                <select
+                  class="selectInp form-control"
+                  id="edit-car-body-type"
+                  name="carBodyType"
+                  #bodyType="ngModel"
+                  [class.is-invalid]="bodyType.invalid && bodyType.touched"
+                  [ngModel]="this.retEditC()?.carBodyType"
+                >
+                  <option *ngFor="let bodyType of bodyTypeValues" [value]="bodyType">{{ getBodyValue(bodyType) }}</option>
+                </select>
+              </p>
+            </div>
+
+            <div class="form-group required">
+              <label for="edit-car-year" class="control-label">Year</label>
+              <input
+                type="number"
+                [ngModel]="this.retEditC()?.carYear"
+                onkeydown="if(event.key==='.'){event.preventDefault();}"
+                #year="ngModel"
+                name="carYear"
+                min="1900"
+                max="2100"
+                [class.is-invalid]="year.invalid && year.touched"
+                class="form-control selectInp"
+                id="edit-car-year"
+                placeholder="Year"
+                required
+              />
+              <div *ngIf="year.errors && year.invalid && year.touched">
+                <small class="text-danger" *ngIf="year.errors?.['required']">Year is required.</small>
+                <small class="text-danger" *ngIf="year.errors?.['min']">Minimum year is 1900.</small>
+                <small class="text-danger" *ngIf="year.errors?.['max']">Maximum year is 2100.</small>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" #id [ngModel]="this.retEditC()?.id" name="id" class="form-control" id="id" />
+
+          <div class="first-block">
+            <div class="form-group required" id="form-model" style="width: 79%">
+              <label for="edit-car-model" class="control-label">Model</label>
+              <input
+                type="text"
+                [ngModel]="this.retEditC()?.carModel"
+                #model="ngModel"
+                minlength="2"
+                maxlength="41"
+                pattern="[A-Za-z0-9\s]+"
+                [class.is-invalid]="model.invalid && model.touched"
+                name="carModel"
+                class="form-control selectInp"
+                id="edit-car-model"
+                placeholder="Model"
+                required
+              />
+              <div *ngIf="model.errors && model.invalid && model.touched">
+                <small class="text-danger" *ngIf="model.errors?.['required']">Model name is required.</small>
+                <small class="text-danger" *ngIf="model.errors?.['pattern']">Model name cannot include symbols.</small>
+                <small class="text-danger" *ngIf="model.errors?.['minlength']">The minimum length is 2 characters.</small>
+              </div>
+              <small class="text-danger" *ngIf="ifModelLenCor(editForm)">The max length is 40 characters.</small>
+            </div>
+
+            <div class="form-group" id="form-engine-volume" style="width: 18%">
+              <label for="edit-car-engine-volume" class="control-label">Engine</label>
+              <div style="display: flex; flex-direction: row">
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="30"
+                  #engineVolume="ngModel"
+                  style="width: 75%; line-height: 1 !important; padding: 0rem 0.15rem !important"
+                  [class.is-invalid]="engineVolume.invalid && engineVolume.touched"
+                  [ngModel]="this.retEditC()?.carEngineVolume"
+                  name="carEngineVolume"
+                  class="form-control selectInp"
+                  id="edit-car-engine-volume"
+                  placeholder="Engine Volume"
+                />
+                <label class="eng-vol"> L</label>
+              </div>
+              <div *ngIf="engineVolume.errors && engineVolume.invalid && engineVolume.touched">
+                <small class="text-danger" *ngIf="engineVolume.errors?.['min']">Minimum engine volume is 0.</small>
+                <small class="text-danger" *ngIf="engineVolume.errors?.['max']">Maximum engine volume is 30.</small>
+              </div>
+            </div>
+          </div>
+          <div class="first-block">
+            <div class="form-group">
+              <label for="carGearboxType" class="control-label">Choose gearbox type of your car</label>
+              <select id="carGearboxType" class="selectInp form-control" ngModel #carGearboxType="ngModel" name="carGearboxType">
+                <option *ngFor="let gearBox of gearBoxTypeValues" [value]="gearBox">{{ getGearBoxValue(gearBox) }}</option>
+              </select>
+
+              <p></p>
+            </div>
+
+            <div class="form-group required" style="width: 20%">
+              <label for="carNumber" class="control-label">Number</label>
+              <div style="display: flex; flex-direction: row">
+                <input
+                  type="number"
+                  onkeydown="if(event.key==='.'){event.preventDefault();}"
+                  [ngModel]="this.retEditC()?.carNumber"
+                  ngModel
+                  #carNumber="ngModel"
+                  required
+                  [class.is-invalid]="carNumber.invalid && carNumber.touched"
+                  name="carNumber"
+                  class="form-control selectInp"
+                  id="carNumber"
+                />
+              </div>
+            </div>
+            <div class="form-group required" style="width: 30%">
+              <label for="carPrice" class="control-label">Price</label>
+              <div style="display: flex; flex-direction: row">
+                <input
+                  type="number"
+                  onkeydown="if(event.key==='.'){event.preventDefault();}"
+                  [ngModel]="this.retEditC()?.carPrice"
+                  ngModel
+                  #carPrice="ngModel"
+                  required
+                  [class.is-invalid]="carPrice.invalid && carPrice.touched"
+                  name="carPrice"
+                  class="form-control selectInp"
+                  id="carPrice"
+                />
+                <label for="carPrice" class="eng-vol"> $</label>
+              </div>
+            </div>
+          </div>
+
+          <label>Options</label>
+          <div class="form-group" name="options1">
+            <mat-chip-list class="selectInp" #chipList aria-label="Fruit selection">
+              <mat-chip class="chips" *ngFor="let option of getOpt()" (removed)="remove(option)">
+                <mat-chip id="chips-name" class="chips-name"> {{ option.name }}</mat-chip>
+                <button id="car-option" matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input
+                id="edit-car-options"
+                maxlength="30"
+                placeholder="New option..."
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-list>
+          </div>
+          <div class="form-group">
+            <label for="edit-car-description" class="control-label">Description</label>
+            <textarea
+              type="text"
+              [ngModel]="this.retEditC()?.carDescription"
+              minlength="20"
+              maxlength="6001"
+              #description="ngModel"
+              [class.is-invalid]="description.invalid && description.touched"
+              name="carDescription"
+              class="form-control selectInp"
+              id="edit-car-description"
+              placeholder="Description"
+              style="resize: none"
+            >
+            </textarea>
+            <div *ngIf="description.errors && description.invalid && description.touched">
+              <small class="text-danger" *ngIf="description.errors?.['minlength']">Please enter at least 20 characters</small>
+            </div>
+            <small class="text-danger" *ngIf="ifDescLenCor(editForm)">Please enter less than 6000 characters</small>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="close-edit-car-btn" data-dismiss="modal" (click)="resetForm(editForm)" class="btn btn-secondary">
+              Cancel
+              <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <button
+              [disabled]="editForm.form.invalid"
+              id="edit-car-btn"
+              (click)="onUpdateCar(editForm.value)"
+              type="submit"
+              data-dismiss="modal"
+              class="btn btn-primary"
+            >
+              Save changes
+              <i class="fa-solid fa-circle-check"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

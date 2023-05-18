@@ -1,0 +1,260 @@
+<div
+  class="modal fade"
+  id="addCarModal"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addCarModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCarModalLabel">Add Car</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="resetForm(addForm)" #closeAddModal aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddCar(addForm)">
+          <div class="form-group">
+            <label for="car-image-file">Image</label>
+            <img
+              class="form-control"
+              alt="car photo"
+              [hidden]="isImageLoad && !imageLoadFail"
+              src="https://d24pzayae8hlxp.cloudfront.net/ghost.png"
+            />
+            <image-cropper
+              [hidden]="!(isImageLoad && !imageLoadFail)"
+              [imageChangedEvent]="imgChangeEvt"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="6 / 4"
+              [resizeToWidth]="600"
+              [resizeToHeight]="400"
+              format="png"
+              (imageCropped)="cropImg($event)"
+              (imageLoaded)="imgLoad()"
+              (cropperReady)="initCropper()"
+              (loadImageFailed)="imgFailed()"
+            >
+            </image-cropper>
+            <input
+              type="file"
+              ngModel
+              #file="ngModel"
+              pattern="^.*\.(jpg|JPG|jpeg|png)$"
+              name="imageUrl"
+              class="form-control imageFil"
+              id="car-image-file"
+              (change)="onFileChange($event)"
+            />
+            <small class="text-danger" *ngIf="file.errors?.['pattern']">Choose image in format .png, .jpeg, .jpg</small>
+          </div>
+
+          <div class="first-block">
+            <div class="form-group required">
+              <label for="carBrand" class="control-label">Brand</label>
+              <select
+                id="carBrand"
+                class="form-control selectInp"
+                ngModel
+                [class.is-invalid]="brand1.invalid && brand1.touched"
+                [(ngModel)]="brandDef"
+                #brand1="ngModel"
+                name="carBrand"
+                required
+              >
+                <option *ngFor="let brand of brandValues" [value]="brand">{{ getBrandValue(brand) }}</option>
+              </select>
+              <small class="text-danger" [class.d-none]="brand1.valid || brand1.untouched"> Brand type is required. </small>
+            </div>
+            <div class="form-group">
+              <label for="body-type" class="control-label">Body Type</label>
+              <p>
+                <select
+                  id="body-type"
+                  class="selectInp form-control"
+                  ngModel
+                  [class.is-invalid]="bodyType.invalid && bodyType.touched"
+                  #bodyType="ngModel"
+                  name="carBodyType"
+                >
+                  <option *ngFor="let bodyType of bodyTypeValues" [value]="bodyType">{{ getBodyValue(bodyType) }}</option>
+                </select>
+              </p>
+            </div>
+
+            <div class="form-group required">
+              <label for="carYear" class="control-label">Year</label>
+              <input
+                type="number"
+                onkeydown="if(event.key==='.'){event.preventDefault();}"
+                [(ngModel)]="yearDef"
+                ngModel
+                #year="ngModel"
+                required
+                [class.is-invalid]="year.invalid && year.touched"
+                name="carYear"
+                min="1900"
+                max="2090"
+                class="form-control selectInp"
+                id="carYear"
+              />
+              <div *ngIf="year.errors && year.invalid && year.touched">
+                <small class="text-danger" *ngIf="year.errors?.['required']">Year is required.</small>
+                <small class="text-danger" *ngIf="year.errors?.['min']">Minimum year is 1900.</small>
+                <small class="text-danger" *ngIf="year.errors?.['max']">Maximum year is 2090.</small>
+              </div>
+            </div>
+          </div>
+          <div class="first-block">
+            <div class="form-group required" id="form-model" style="width: 79%">
+              <label for="carModel" class="control-label">Model</label>
+              <input
+                type="text"
+                id="carModel"
+                minlength="2"
+                maxlength="41"
+                ngModel
+                name="carModel"
+                #model="ngModel"
+                pattern="[A-Za-z0-9\s]+"
+                [(ngModel)]="modelDef"
+                [class.is-invalid]="model.invalid && model.touched"
+                class="form-control selectInp"
+                required
+              />
+              <div *ngIf="model.errors && model.invalid && model.touched">
+                <small class="text-danger" *ngIf="model.errors?.['required']">Model name is required.</small>
+                <small class="text-danger" *ngIf="model.errors?.['pattern']">Model name cannot include symbols.</small>
+                <small class="text-danger" *ngIf="model.errors?.['minlength']">The minimum length is 2 characters.</small>
+              </div>
+              <small class="text-danger" *ngIf="ifModelLenCor(addForm)">The max length is 40 characters.</small>
+            </div>
+
+            <div class="form-group" id="form-engine-volume" style="width: 18%">
+              <label for="engine-volume" class="control-label">Engine</label>
+              <div style="display: flex; flex-direction: row">
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0.0"
+                  size="3"
+                  max="30.0"
+                  #engineVolume="ngModel"
+                  style="width: 75%; line-height: 1 !important; padding: 0rem 0.15rem !important"
+                  [class.is-invalid]="engineVolume.invalid && engineVolume.touched"
+                  ngModel
+                  name="carEngineVolume"
+                  class="form-control selectInp"
+                  id="engine-volume"
+                />
+                <label for="engine-volume" class="eng-vol"> L</label>
+              </div>
+              <div *ngIf="engineVolume.errors && engineVolume.invalid && engineVolume.touched">
+                <small class="text-danger" *ngIf="engineVolume.errors?.['min']">Minimum engine volume is 0.</small>
+                <small class="text-danger" *ngIf="engineVolume.errors?.['max']">Maximum engine volume is 30.</small>
+              </div>
+            </div>
+          </div>
+          <div class="first-block">
+            <div class="form-group" style="width: 40%">
+              <label for="carGearboxType" class="control-label">Gearbox type</label>
+              <select id="carGearboxType" class="selectInp form-control" ngModel #carGearboxType="ngModel" name="carGearboxType">
+                <option *ngFor="let gearBox of gearBoxTypeValues" [value]="gearBox">{{ getGearBoxValue(gearBox) }}</option>
+              </select>
+
+              <p></p>
+            </div>
+
+            <div class="form-group required" style="width: 20%">
+              <label for="carYear" class="control-label">Number</label>
+              <div style="display: flex; flex-direction: row">
+                <input
+                  type="number"
+                  onkeydown="if(event.key==='.'){event.preventDefault();}"
+                  [(ngModel)]="numberDef"
+                  ngModel
+                  #carNumber="ngModel"
+                  required
+                  [class.is-invalid]="carNumber.invalid && carNumber.touched"
+                  name="carNumber"
+                  class="form-control selectInp"
+                  id="carNumber"
+                />
+              </div>
+            </div>
+            <div class="form-group required" style="width: 30%">
+              <label for="carYear" class="control-label">Price</label>
+              <div style="display: flex; flex-direction: row">
+                <input
+                  type="number"
+                  onkeydown="if(event.key==='.'){event.preventDefault();}"
+                  [(ngModel)]="priceDef"
+                  ngModel
+                  #carPrice="ngModel"
+                  required
+                  [class.is-invalid]="carPrice.invalid && carPrice.touched"
+                  name="carPrice"
+                  class="form-control selectInp"
+                  id="carPrice"
+                />
+                <label for="carPrice" class="eng-vol"> $</label>
+              </div>
+            </div>
+          </div>
+          <label>Options</label>
+          <div class="form-group" name="options1">
+            <mat-chip-list class="selectInp" #chipList aria-label="Fruit selection">
+              <mat-chip class="chips" *ngFor="let option of options" (removed)="remove(option)">
+                <mat-chip class="chips-name"> {{ option.name }}</mat-chip>
+                <button matChipRemove id="add-car-option">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input
+                id="options"
+                maxlength="30"
+                placeholder="New option..."
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-list>
+          </div>
+          <div class="form-group">
+            <label for="carDescription" class="control-label">Description</label>
+            <textarea
+              type="text"
+              minlength="20"
+              maxlength="6001"
+              ngModel
+              #description="ngModel"
+              [class.is-invalid]="description.invalid && description.touched"
+              name="carDescription"
+              class="form-control selectInp"
+              id="carDescription"
+              style="resize: none"
+            >
+            </textarea>
+            <div *ngIf="description.errors && description.invalid && description.touched">
+              <small class="text-danger" *ngIf="description.errors?.['minlength']">Please enter at least 20 characters</small>
+            </div>
+            <small class="text-danger" *ngIf="ifDescLenCor(addForm)">Please enter less than 6000 characters</small>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="close-add-car-form" class="btn btn-secondary" (click)="resetForm(addForm)" data-dismiss="modal">
+              Cancel <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <button [disabled]="addForm.invalid" id="add-car-btn" type="submit" class="btn btn-primary">
+              Save car <i class="fa-solid fa-circle-check"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

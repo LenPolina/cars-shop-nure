@@ -1,0 +1,203 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+#ads {
+  margin: 15px 0 30px 0;
+}
+#ads .card-notify-year {
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  background: -webkit-linear-gradient(#f44336, #d9b500);
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  width: 60px;
+  height: 60px;
+  padding: 17px 0 0 0;
+}
+.featured_vehicles_inline {
+  display: inline-block;
+  vertical-align: top;
+  margin: 5px 5px 0 0;
+  min-width: 170px;
+  width: 100% !important;
+  text-align: left;
+  color: #a3a3a3 !important;
+  font-size: 16px;
+}
+.fa-car,
+.fa-money,
+.fa-calendar,
+.fa-cube,
+.fa-cog,
+.fa-car-side,
+.fa-modx {
+  display: inline-block;
+  background: -webkit-linear-gradient(#f44336, #d9b500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font: normal normal normal 15px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[class^='icon-'],
+[class*=' icon-'] {
+  display: inline-block;
+  width: 100%;
+}
+.moduletable_latest .featured_vehicles .featured_vehicles_block .feature_textvehicle i {
+  color: #656565 !important;
+}
+
+h4 {
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: none;
+  text-align: inherit;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.featured_block_title {
+  font-size: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+  width: auto;
+  max-width: 100%;
+}
+#ads .col-md-4 {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.title-catalog {
+  font-size: 38px;
+  margin: 45px auto;
+}
+.tc {
+  text-align: center;
+}
+.btn-login {
+  position: relative;
+  border: 1px solid #e6de08;
+  color: #e6de08;
+  background-color: transparent;
+}
+.btn {
+  text-transform: none !important;
+  border-radius: 2rem !important;
+  transition: all 0.3s ease;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 2px 2px 3px #888888;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+.btn-primary {
+  font-size: medium;
+  margin-bottom: 10px;
+  background-color: rgba(255, 71, 0, 0.76) !important;
+  color: white !important;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: rgba(255, 71, 0, 0.95) !important;
+  border: none;
+}
+.tooltips {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  justify-content: center;
+  background-color: rgba(87, 87, 87, 0.06);
+  border-color: rgba(87, 87, 87, 0.06);
+}
+.btn-group {
+  box-shadow: none !important;
+  color: rgba(90, 90, 90, 0.71);
+  position: relative;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+.fa-pencil,
+.fa-trash {
+  font-size: 20px;
+  position: center;
+  text-align: center;
+  justify-content: center;
+  margin: 2px 2px;
+}
+.float-right.btn-group {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.img-fluid {
+  width: 100%;
+  min-height: 10vmax;
+}
+.container {
+  margin-top: 30px;
+  max-width: 1700px;
+}
+.card-image {
+  cursor: pointer;
+  transition: transform 0.8s;
+}
+.card-image:hover {
+  transform: scale(1.1);
+}
+.hide {
+  opacity: 0;
+  transition: opacity 0.85s ease;
+}
+.card:hover .hide {
+  opacity: 1;
+}
+.card {
+  position: relative;
+  transition: box-shadow 0.85s ease-in-out;
+  border-color: rgba(59, 59, 59, 0.43);
+  background-color: rgb(255, 255, 255);
+  border-radius: 0;
+}
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(54, 53, 51, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.79) !important;
+}
+body {
+  background-color: rgba(152, 152, 152, 0.12) !important;
+}
+.btn-secondary {
+  border-color: rgba(255, 71, 0, 0.82);
+  color: rgba(255, 71, 0, 0.82) !important;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 71, 0, 0.82);
+  color: rgba(255, 71, 0, 0.89) !important;
+  background: rgba(255, 203, 185, 0.82);
+}
+#ads .card-image-overlay {
+  font-size: 20px;
+}
+#ads .card-image-overlay span {
+  display: inline-block;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  color: grey;
+}

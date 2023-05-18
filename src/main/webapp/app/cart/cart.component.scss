@@ -1,0 +1,56 @@
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+.form-control:focus {
+  background-color: transparent;
+}
+.form-control {
+  border-radius: 0 !important;
+  border-bottom: 1px solid #ffffff !important;
+}
+.bg-orange {
+  background-color: rgba(255, 115, 0, 0.73);
+}
+.btn-white-bg {
+  border-color: white;
+  color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 71, 0, 0);
+}
+.fa-trash-alt:hover {
+  transition: color 0.5s;
+}
+.fa-trash-alt:hover {
+  color: rgba(255, 71, 0, 0.95);
+}
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid rgba(0, 128, 0, 0);
+}
+/* Style the tooltip */
+.tooltip {
+  color: rgba(255, 71, 0, 0.95);
+  position: relative;
+  display: inline-block;
+}
+
+/* Style the tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 10000;
+}
+
+/* Show the tooltip text when hovering over the element */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

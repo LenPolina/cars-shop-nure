@@ -1,0 +1,22 @@
+<!-- Modal deleteCarModal-->
+<div class="modal fade" id="amountCarModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Delete car from cart</h5>
+        <button type="button" (click)="confirm()" class="close" data-dismiss="modal" #amountCarModal aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="car-description">Some cars are not available</p>
+        <div class="modal-footer">
+          <button (click)="confirm()" class="btn btn-primary" id="submit-delete-car" data-dismiss="modal">
+            Submit
+            <i class="fa-solid fa-circle-check"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

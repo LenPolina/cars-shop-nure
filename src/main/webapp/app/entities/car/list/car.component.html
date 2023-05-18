@@ -1,0 +1,198 @@
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<div>
+  <h2 id="page-heading" data-cy="CarHeading">
+    <span>Cars</span>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+  <router-outlet></router-outlet>
+
+  <app-floating-button id="add-car-button" title="Add new car" *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="onOpenAddModel()"
+    ><i style="font-size: 43px; margin: 6px 3px" class="fa-solid fa-plus"></i>
+  </app-floating-button>
+
+  <app-add></app-add>
+  <app-edit></app-edit>
+  <jhi-alert></jhi-alert>
+  <div class="container" id="catalog">
+    <div class="alert alert-warning" id="no-result" *ngIf="cars?.length === 0">
+      <span>No Cars found</span>
+    </div>
+    <!-- <div class="filter">
+      <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#mobile-filter" aria-expanded="false" aria-controls="mobile-filter">Filters<span class="fa fa-filter pl-1"></span></button>
+    </div>
+    <div id="mobile-filter">
+      <div>
+        <h6 class="p-1 border-bottom">Home Furniture</h6>
+        <ul>
+          <li><a href="#">Living</a></li>
+          <li><a href="#">Dining</a></li>
+          <li><a href="#">Office</a></li>
+          <li><a href="#">Bedroom</a></li>
+          <li><a href="#">Kitchen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="p-1 border-bottom">Filter By</h6>
+        <p class="mb-2">Color</p>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
+            <span class="fa fa-circle pr-1" id="red"></span>Red
+          </a></li>
+          <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
+            <span class="fa fa-circle pr-1" id="teal"></span>Teal
+          </a></li>
+          <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
+            <span class="fa fa-circle pr-1" id="blue"></span>Blue
+          </a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Type</h6>
+        <form class="ml-md-2">
+          <div class="form-inline border rounded p-sm-2 my-2">
+            <input type="radio" name="type" id="boring">
+            <label for="boring" class="pl-1 pt-sm-0 pt-1">Boring</label>
+          </div>
+          <div class="form-inline border rounded p-sm-2 my-2">
+            <input type="radio" name="type" id="ugly">
+            <label for="ugly" class="pl-1 pt-sm-0 pt-1">Ugly</label>
+          </div>
+          <div class="form-inline border rounded p-md-2 p-sm-1">
+            <input type="radio" name="type" id="notugly">
+            <label for="notugly" class="pl-1 pt-sm-0 pt-1">Not Ugly</label>
+          </div>
+        </form>
+      </div>
+    </div>
+    <section id="sidebar">
+      <div>
+        <h6 class="p-1 border-bottom">Home Furniture</h6>
+        <ul>
+          <li><a href="#">Living</a></li>
+          <li><a href="#">Dining</a></li>
+          <li><a href="#">Office</a></li>
+          <li><a href="#">Bedroom</a></li>
+          <li><a href="#">Kitchen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="p-1 border-bottom">Filter By</h6>
+        <p class="mb-2">Color</p>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
+            <span class="fa fa-circle pr-1" id="red1"></span>Red
+          </a></li>
+          <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
+            <span class="fa fa-circle pr-1" id="teal1"></span>Teal
+          </a></li>
+          <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
+            <span class="fa fa-circle pr-1" id="blue1"></span>Blue
+          </a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Type</h6>
+        <form class="ml-md-2">
+          <div class="form-inline border rounded p-sm-2 my-2">
+            <input type="radio" name="type" id="boring1">
+            <label for="boring" class="pl-1 pt-sm-0 pt-1">Boring</label>
+          </div>
+          <div class="form-inline border rounded p-sm-2 my-2">
+            <input type="radio" name="type" id="ugly1">
+            <label for="ugly" class="pl-1 pt-sm-0 pt-1">Ugly</label>
+          </div>
+          <div class="form-inline border rounded p-md-2 p-sm-1">
+            <input type="radio" name="type" id="notugly1">
+            <label for="notugly" class="pl-1 pt-sm-0 pt-1">Not Ugly</label>
+          </div>
+        </form>
+      </div>
+    </section>-->
+    <div class="table-responsive table-entities" id="entities" *ngIf="cars && cars.length > 0">
+      <div class="row" id="ads">
+        <!-- Category Card -->
+        <div *ngFor="let car of cars; let i = index" class="col-md-4">
+          <div class="card rounded h-100" data-aos="flip-right">
+            <span class="card-notify-year"
+              ><b>${{ car?.carPrice }}</b></span
+            >
+            <div id="car-id">
+              <div class="card-image" id="{{ i }}" [routerLink]="['/all', car.id, 'view']">
+                <img class="img-fluid" id="car-image" src="{{ getImageUrl(car?.carImageUrl) }}" alt="Alternate Text" />
+              </div>
+              <div class="card-body text-center">
+                <div class="card-image-overlay m-auto">
+                  <div class="feature_textvehicle">
+                    <h4 id="car_name" class="featured_block_title">{{ getBrandValue(car?.carBrand) }} {{ car?.carModel }}</h4>
+
+                    <div id="body" class="featured_vehicles_category featured_vehicles_inline" [hidden]="car?.carBodyType === null">
+                      <i class="fa-solid fa-car-side"></i> {{ getBodyValue(car?.carBodyType) }}
+                    </div>
+                    <div id="brand" class="featured_vehicles_rooms featured_vehicles_inline">
+                      <i class="fa fa-car"></i> {{ getBrandValue(car?.carBrand) }}
+                    </div>
+                    <div id="model" hidden class="featured_vehicles_rooms featured_vehicles_inline">
+                      <i class="fa fa-modx"></i>{{ car?.carModel }}
+                    </div>
+                    <div id="year" class="featured_vehicles_year featured_vehicles_inline" [hidden]="car?.carYear === null">
+                      <i class="fa fa-calendar"></i> Year of issue: {{ car?.carYear }}
+                    </div>
+                    <div id="gear-box" class="featured_vehicles_mileage featured_vehicles_inline" [hidden]="car?.carGearboxType === null">
+                      <i class="fa fa-cog"></i> Gearbox type: {{ getGearBoxValue(car?.carGearboxType) }}
+                    </div>
+                    <div id="engine-vol" class="featured_vehicles_hits featured_vehicles_inline" [hidden]="car?.carEngineVolume === null">
+                      <i class="fa fa-cube"></i> Engine volume: {{ car?.carEngineVolume }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="hide">
+                <div class="float-right btn-group">
+                  <a
+                    (click)="onOpenModel(car)"
+                    *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                    class="btn btn-primary tooltips"
+                    id="update-car-btn"
+                    data-placement="top"
+                    title="Edit the car"
+                    data-toggle="tooltip"
+                    data-original-title="Edit"
+                  >
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                  <a
+                    (click)="delete(car)"
+                    *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                    class="btn btn-secondary tooltips"
+                    id="delete-car-btn"
+                    title="Delete the car"
+                    data-placement="top"
+                    data-toggle="tooltip"
+                    data-original-title="Delete"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </a>
+                  <button
+                    (click)="addToCart(car.id)"
+                    *jhiHasAnyAuthority="'ROLE_USER'"
+                    [disabled]="checkCarAmount(car?.carNumber)"
+                    class="btn btn-primary"
+                    id="add-car-to-cart-btn"
+                    title="Add the car to cart"
+                    data-placement="top"
+                    data-toggle="tooltip"
+                    data-original-title="Add to cart"
+                  >
+                    Add to cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

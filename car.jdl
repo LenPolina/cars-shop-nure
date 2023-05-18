@@ -1,0 +1,37 @@
+entity Car {
+carBrand Brand required
+carModel String minlength(2) maxlength(40) required
+carBodyType BodyType
+carImageUrl String
+carYear Integer min(1900) max(2100) required
+carEngineVolume Float min(0) max(30.0)
+carGearboxType GearBoxType
+carDescription String minlength(20) maxlength(6000)
+}
+
+entity Option {
+	optionName String
+}
+
+relationship OneToMany {
+    Car to Option{car}
+}
+
+dto Car with mapstruct
+
+enum BodyType {
+    SEDAN, UNIVERSAL, HATCHBACK, MINIVAN, SUV, COUPE, CONVERTIBLE, PICKUP, LIMOUSINE
+}
+
+enum GearBoxType {
+    AUTOMATIC, MECHANIC, ROBOTIC
+}
+
+enum Brand {
+     ACURA, AUDI, BENTLEY, BMW, BOLLINGER, BRILLIANCE, CITROEN, CONTINENTAL, INEOS, INFINITI, MCLAREN, MERCEDES_BENZ, MG, MINI, NISSAN, OPEL, PAGANI, PEUGEOT, POLESTAR, PORSCHE, QOROS, RANGE_ROVER, RAVON, RENAULT, RIMAC, RIVIAN, ROLLS_ROYCE, SAAB, SAIPA, SEAT, SKODA, SMART, SSANGYONG, SSC_NORTH, AMERICA, STELLANTIS, SUBARU, SUZUKI, TATA, TESLA, TORSUS, TOYOTA, VINFAST, VOLKSWAGEN, VOLVO, XPENG
+}
+
+service Car with serviceImpl
+
+
+

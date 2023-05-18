@@ -1,0 +1,71 @@
+{
+  "applications": "*",
+  "changelogDate": "20230215115816",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "car",
+  "fields": [
+    {
+      "fieldName": "carBrand",
+      "fieldType": "Brand",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACURA,AUDI,BENTLEY,BMW,BOLLINGER,BRILLIANCE,CITROEN,CONTINENTAL,INEOS,INFINITI,MCLAREN,MERCEDES_BENZ,MG,MINI,NISSAN,OPEL,PAGANI,PEUGEOT,POLESTAR,PORSCHE,QOROS,RANGE_ROVER,RAVON,RENAULT,RIMAC,RIVIAN,ROLLS_ROYCE,SAAB,SAIPA,SEAT,SKODA,SMART,SSANGYONG,SSC_NORTH,AMERICA,STELLANTIS,SUBARU,SUZUKI,TATA,TESLA,TORSUS,TOYOTA,VINFAST,VOLKSWAGEN,VOLVO,XPENG"
+    },
+    {
+      "fieldName": "carModel",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "40",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "carBodyType",
+      "fieldType": "BodyType",
+      "fieldValues": "SEDAN,UNIVERSAL,HATCHBACK,MINIVAN,SUV,COUPE,CONVERTIBLE,PICKUP,LIMOUSINE"
+    },
+    {
+      "fieldName": "carImageUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "carYear",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max", "required"],
+      "fieldValidateRulesMax": "2100",
+      "fieldValidateRulesMin": "1900"
+    },
+    {
+      "fieldName": "carEngineVolume",
+      "fieldType": "Float",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "30.0",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "carGearboxType",
+      "fieldType": "GearBoxType",
+      "fieldValues": "AUTOMATIC,MECHANIC,ROBOTIC"
+    },
+    {
+      "fieldName": "carDescription",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "6000",
+      "fieldValidateRulesMinlength": "20"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Car",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "option",
+      "otherEntityRelationshipName": "car",
+      "relationshipName": "option",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

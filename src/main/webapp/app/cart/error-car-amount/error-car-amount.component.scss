@@ -1,0 +1,35 @@
+.btn-primary {
+  background: rgba(255, 71, 0, 0.89);
+  border: none;
+  color: #ffffff;
+}
+.btn-primary:enabled:hover {
+  background: rgba(217, 58, 0, 0.89);
+  border: none;
+  color: #ffffff;
+}
+
+.modal-body {
+  font-size: 16px;
+}
+
+.btn-secondary {
+  color: #ff4700;
+  background: transparent;
+  /*-webkit-background-clip: b;
+  -webkit-text-fill-color: transparent;*/
+  border: 1px solid #ff4700;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+  color: #ff4700;
+  background: rgba(255, 71, 0, 0.09);
+  /*-webkit-background-clip: b;
+  -webkit-text-fill-color: transparent;*/
+  border: 1px solid #ff4700;
+}
+
+.modal-title {
+  font-size: 20px;
+}

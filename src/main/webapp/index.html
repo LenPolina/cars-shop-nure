@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>carsCatalog</title>
+    <meta name="description" content="Description for carsCatalog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#000000" />
+    <base href="/" />
+    <link rel="icon" type="image/x-icon" href="content/images/.png" />
+    <link rel="preconnect" href="https://s3.amazonaws.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="preconnect" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="../../content/css/loading.css" />
+    <!-- style css -->
+    <link rel="stylesheet" href="../../content/css1/style.css" />
+    <!-- Responsive-->
+    <link rel="stylesheet" href="../../content/css1/responsive.css" />
+    <link rel="stylesheet" href="../../content/css1/jquery.mCustomScrollbar.min.css" />
+    <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
+  </head>
+  <body>
+    <!--[if lt IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+    <jhi-main>
+      <div class="app-loading">
+        <div class="lds-pacman">
+          <div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+      <div class="app-loading">
+        <div id="jhipster-error" style="display: none">
+          <!-- This content is for troubleshooting purpose and will be removed when app renders -->
+          <h1>An error has occurred :-(</h1>
+          <h2>Usual error causes</h2>
+          <ol>
+            <li>
+              You started the application from an IDE and you didn't run <code style="color: red">npm start</code> or
+              <code style="color: red">npm run webapp:build</code>.
+            </li>
+            <li>
+              You had a network error while running <code style="color: red">npm install</code>. If you are behind a corporate proxy, it is
+              likely that this error was caused by your proxy. Have a look at the JHipster error logs, you will probably have the cause of
+              the error.
+            </li>
+            <li>
+              You installed a Node.js version that doesn't work with JHipster: please use an LTS (long-term support) version, as it's the
+              only version we support.
+            </li>
+          </ol>
+          <h2>Building the client side code again</h2>
+          <p>If you want to go fast, run <code style="color: red">./mvnw</code> to build and run everything.</p>
+          <p>If you want to have more control, so you can debug your issue more easily, you should follow the following steps:</p>
+          <ol>
+            <li>Install npm dependencies with the command <code style="color: red">npm install</code></li>
+            <li>
+              Build the client with the command <code style="color: red">npm run webapp:build</code> or
+              <code style="color: red">npm start</code>
+            </li>
+            <li>Start the server with <code style="color: red">./mvnw</code> or using your IDE</li>
+          </ol>
+
+          <h2>Getting more help</h2>
+
+          <h3>If you have a question on how to use JHipster</h3>
+          <p>
+            Go to Stack Overflow with the
+            <a href="http://stackoverflow.com/tags/jhipster" target="_blank" rel="noopener noreferrer">"jhipster"</a> tag.
+          </p>
+
+          <h3>If you have a bug or a feature request</h3>
+          <p>
+            First read our
+            <a href="https://github.com/jhipster/generator-jhipster/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer"
+              >contributing guidelines</a
+            >.
+          </p>
+          <p>
+            Then, fill a ticket on our
+            <a href="https://github.com/jhipster/generator-jhipster/issues/new/choose" target="_blank" rel="noopener noreferrer"
+              >bug tracker</a
+            >, we'll be happy to resolve your issue!
+          </p>
+
+          <h3>If you want to chat with contributors and other users</h3>
+          <p>
+            Join our chat room on
+            <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">Gitter.im</a>. Please note
+            that this is a public chat room, and that we expect you to respect other people and write in a correct English language!
+          </p>
+          <!-- end of troubleshooting content -->
+        </div>
+      </div>
+    </jhi-main>
+    <noscript>
+      <h1>You must enable JavaScript to view this page.</h1>
+    </noscript>
+    <script type="text/javascript">
+      // show an error message if the app loading takes more than 4 sec
+      window.onload = function () {
+        setTimeout(showError, 4000);
+      };
+      function showError() {
+        var errorElm = document.getElementById('jhipster-error');
+        if (errorElm && errorElm.style) {
+          errorElm.style.display = 'block';
+        }
+      }
+    </script>
+    <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>-->
+    <script src="https://kit.fontawesome.com/69db68a046.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

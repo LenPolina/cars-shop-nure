@@ -1,0 +1,30 @@
+.btn-primary {
+  background: rgba(255, 71, 0, 0.89);
+  border: none;
+}
+.btn-primary {
+  color: white;
+  background: rgba(255, 71, 0, 0.89);
+  border: none;
+}
+
+.modal-body {
+  font-size: 18px;
+}
+
+.btn-secondary {
+  color: #ff4700;
+  background: transparent;
+  /*-webkit-background-clip: b;
+  -webkit-text-fill-color: transparent;*/
+  border: 1px solid #ff4700;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+  color: #ff4700;
+  background: rgba(255, 71, 0, 0.09);
+  /*-webkit-background-clip: b;
+  -webkit-text-fill-color: transparent;*/
+  border: 1px solid #ff4700;
+}

@@ -1,0 +1,138 @@
+<div class="justify-content-center" id="card">
+  <div>
+    <div *ngIf="car">
+      <h2 data-cy="carDetailsHeading"><span>Car</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <div class="container bootdey">
+        <div class="col-md-12">
+          <section class="panel">
+            <div class="panel-body">
+              <div id="car-card" class="card">
+                <span class="card-notify-year"
+                  ><b>${{ car.carPrice }}</b></span
+                >
+                <div class="info">
+                  <div class="left-col">
+                    <div class="intro" style="display: flex; flex-direction: column">
+                      <div id="brandModelYear" class="pro-d-title">{{ car.carBrand }} {{ car.carModel }} {{ car.carYear }}</div>
+
+                      <div class="my-pro-img-details rounded">
+                        <img id="carImage" src="{{ getImageUrl(car.carImageUrl) }}" width="640" height="381" alt="" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="description">
+                    <div class="widget-2 advanced-search bg-grea-2">
+                      <h3 class="sidebar-title">Details about the car</h3>
+                      <ul>
+                        <li>
+                          <span><i class="fa fa-car"></i> Make</span>
+                          <div id="brand">{{ car.carBrand }}</div>
+                        </li>
+                        <li>
+                          <span><i class="fa fa-modx"></i> Model</span>
+                          <div id="model">{{ car.carModel }}</div>
+                        </li>
+                        <li [hidden]="car.carBodyType === null">
+                          <span><i class="fa-solid fa-car-side"></i> Body Style</span>
+                          <div id="bodyType">{{ car.carBodyType }}</div>
+                        </li>
+                        <li>
+                          <span><i class="fa fa-calendar"></i> Year</span>
+                          <div id="year">{{ car.carYear }}</div>
+                        </li>
+                        <li [hidden]="car.carGearboxType === null">
+                          <span><i class="fa fa-cog"> </i> Transmission</span>
+                          <div id="gearboxType">{{ car.carGearboxType }}</div>
+                        </li>
+                        <li [hidden]="car.carEngineVolume === null">
+                          <span><i class="fa fa-cube"></i> Engine</span>
+                          <div id="engineVolume">{{ getEngineVolume() }}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <!--       <mat-tab-group class="chips" color="warn">
+                           <mat-tab id="description-tab" *ngIf="car.carDescription !== null" label="Description">
+                             <div class="desc-tab">
+                               <div  id="description">
+                                   {{car.carDescription}}
+                               </div>
+                             </div>
+                           </mat-tab>
+                           <mat-tab id="options-tab" *ngIf="!isPresent(options)" label="Options">
+                             <div class="desc-tab">
+                               <div class="options"  *ngFor="let option of options">
+                                 <div id="option" class="option"><i class="fa-solid fa-square-check"></i>{{option}}</div>
+                               </div>
+                             </div>
+                           </mat-tab>
+                         </mat-tab-group>-->
+                  <p></p>
+                  <p></p>
+                  <p></p>
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" *ngIf="car.carDescription !== null" role="presentation">
+                      <button
+                        class="nav-link active"
+                        id="home-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#home"
+                        type="button"
+                        role="tab"
+                        aria-controls="home"
+                        aria-selected="true"
+                      >
+                        Description
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation" *ngIf="!isPresent(options)">
+                      <button
+                        class="nav-link"
+                        id="profile-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#profile"
+                        type="button"
+                        role="tab"
+                        aria-controls="profile"
+                        aria-selected="false"
+                      >
+                        Options
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <p class="desc-tab">{{ car.carDescription }}</p>
+                    </div>
+                    <div class="tab-pane fade desc-tab" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <p></p>
+                      <div class="options" *ngFor="let option of options">
+                        <div id="option" class="option"><i class="fa-solid fa-square-check"></i>{{ option }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <app-floating-button (click)="onOpenModel(car, 'edit')" id="editCarBtn" *jhiHasAnyAuthority="'ROLE_ADMIN'"
+            ><i class="fa fa-pencil"></i
+          ></app-floating-button>
+          <app-edit></app-edit>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
